@@ -2,6 +2,8 @@ package com.cardgames.gofish;
 
 public class Player {
     private String name;
+    private int books;
+
 
     public Player() {
 
@@ -11,7 +13,11 @@ public class Player {
         return name;
     }
 
-    public int askPlayer(){
+    public int requestCard(){
+        
+    }
+
+    public int getBooks(){
 
     }
 }
