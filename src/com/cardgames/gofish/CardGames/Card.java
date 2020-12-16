@@ -1,4 +1,4 @@
-package com.cardgames.gofish;
+package com.cardgames.gofish.CardGames;
 
 public class Card {
     private int value;
@@ -26,7 +26,7 @@ public class Card {
             case 13:
                 output = "KI";
                 break;
-            case 15:
+            case 14:
                 output = "AC";
                 break;
             default:
