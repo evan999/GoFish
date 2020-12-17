@@ -23,7 +23,7 @@ public class Hand {
     }
 
 
-    private int getCount(){
+    public int getCount(){
         return cards.size();
     }
 
@@ -39,26 +39,46 @@ public class Hand {
         return cards.remove(index);
     }
 
+    public String toString(){
+        String output = "";
+        for (var card : cards) {
+            output += card + " ";
+        }
+        return output.trim();
+    }
+
+    public Card getCard(int index){
+        // Get the matching card value from the player's hand.
+        //
+        return cards.get(index);
+    }
+
     public boolean isPair() {
         if (cards.size() > 2) return false;
         return true;
     }
 
-    public void removePair(int value){
-        cards.removeIf(card -> card.getValue() == value);
-
-//        for(var card : cards){
-//            if(card.getValue() == value){
-//                cards.remove(card);
-//            }
-//        }
-    }
+//    public void removePair(int value){
+//        cards.removeIf(card -> card.getValue() == value);
+//
+////        for(var card : cards){
+////            if(card.getValue() == value){
+////                cards.remove(card);
+////            }
+////        }
+//    }
 
     private boolean isEmpty(){
         if(cards.size() == 0){
             return true;
         }
         return false;
+    }
+
+    public void displayHand(){
+        for (var card : cards){
+            System.out.println(card.toString() + " ");
+        }
     }
 
 //    @Override

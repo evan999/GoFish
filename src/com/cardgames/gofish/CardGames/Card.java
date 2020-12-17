@@ -26,7 +26,7 @@ public class Card {
             case 13:
                 output = "KI";
                 break;
-            case 14:
+            case 15:
                 output = "AC";
                 break;
             default:
