@@ -87,7 +87,7 @@ public class Hand {
         }
     }
 
-    public int getPairs(){
+    public int findPairs(){
         for(int i = 0; i < cards.size()-1; i++){
             for(int j = i + 1; j < cards.size(); j++){
                 if(cards.get(i).getValue() == cards.get(j).getValue()){
@@ -98,6 +98,10 @@ public class Hand {
             }
         }
 
+        return pairs;
+    }
+
+    public int getPairs(){
         return pairs;
     }
 

@@ -85,20 +85,20 @@ public class Game {
             System.out.println("Go Fish!");
             playerTurn = false;
             table.getPlayer().addCard(table.getDeck().draw());
-            table.getPlayer().getPairs();
+            table.getPlayer().findPairs();
         }
 
         if(!found && !playerTurn){
             System.out.println("Go Fish!");
             playerTurn = true;
             table.getOpponent().addCard(table.getDeck().draw());
-            table.getOpponent().getPairs();
+            table.getOpponent().findPairs();
         }
     }
 
     private void displayHand(Hand hand) {
         System.out.println(hand);
-        System.out.println(hand.getName() + " Pairs: " + hand.getPairs());
+        System.out.println(hand.getName() + " Pairs: " + hand.findPairs());
     }
 
     private void displayTable(){
