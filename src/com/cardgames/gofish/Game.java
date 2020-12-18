@@ -29,8 +29,8 @@ public class Game {
 //        table.getPlayer().removeCard(ask);
         System.out.println("Player 1: ");
         table.getPlayer().displayHand();
-//        System.out.println("Player 2: ");
-//        table.getOpponent().displayHand();
+        System.out.println("Player 2: ");
+        table.getOpponent().displayHand();
     }
 
     private void deal(){
@@ -48,9 +48,10 @@ public class Game {
             if(table.getPlayer().getCardValue(index) == value) {
                 found = true;
                 // System.out.println(index);
-                table.getPlayer().removeCard(index);
+                // table.getPlayer().removeCard(index);
                 // Card matchingCard = table.getPlayer().removeCard(index);
 //              table.getOpponent().addCard(matchingCard);
+                table.getOpponent().addCard(table.getPlayer().removeCard(index));
 //              cards.add(matchingCard);
             }
         }
