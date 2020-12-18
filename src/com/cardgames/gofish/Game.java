@@ -11,8 +11,8 @@ public class Game {
     private final static int cardsToDeal = 7;
     private List<Card> cards = new ArrayList<Card>();
     private Console console = new Console();
-    Hand playerHand = table.getPlayer();
-    Hand opponentHand = table.getOpponent();
+//    Hand playerHand = table.getPlayer();
+//    Hand opponentHand = table.getOpponent();
 
     public void play(){
         table.getDeck().shuffle();
@@ -50,7 +50,7 @@ public class Game {
                 // System.out.println(index);
                 table.getPlayer().removeCard(index);
                 Card matchingCard = table.getPlayer().removeCard(index);
-//                table.getOpponent().addCard(matchingCard);
+//              table.getOpponent().addCard(matchingCard);
 //              cards.add(matchingCard);
             }
         }
@@ -65,47 +65,37 @@ public class Game {
         }
     }
 
-    public void getPairs(){
-        // Hashmap of cards in player hand
-        // Detect if there's 4 of a value in hand.
-        // Take the key and remove it from hand
-        // Add 1 to books attribute
-        HashMap<Integer, Integer> cardsInHand = new HashMap<>();
-
-
-    }
-
-//    public void requestCard(){
-//        Card ask = cards.get(ask);
+//    private boolean playerTurn(Hand player){
+//        displayHand(player);
+//        return
+//    }
 //
-//        if(cards.contains(ask)){
-//            cards.remove(ask);
-//            // return ask;
-//        }
-//        else{
-//            System.out.println("Go Fish!");
-//            // return null
-//        }
+//    private boolean opponentTurn(Hand opponent){
+//        displayHand(opponent);
+//
 //    }
 
-//    public void requestCard(Card card){
-//        // System.out.println("What card do you want to ask for? (2-15): ");
-//        //int requestValue = card.getValue();
-//        if(cards.contains(card.getValue())) {
-//            // Transfer cards to opposing player's hand.
-//            for(var c : cards){
-//                if(cards.indexOf(c) == 0){
-//                    // give card
-//                    giveCard();
-//                }
-//            }
-//        }
+//    public void getPairs(){
+//        // Hashmap of cards in player hand
+//        // Detect if there's 2 of a value in hand.
+//        // Take the key and remove it from hand
+//        // Add 1 to pairs attribute
+//        HashMap<Integer, Integer> cardsInHand = new HashMap<>();
+//
+//        // cardsInHand.put(table.getPlayer().getCardValue, 1);
+//
+//
 //    }
 
-    public void giveCard(){
-        // Give matching cards to opposing player
-
+    private void displayHand(Hand hand) {
+        System.out.println(hand);
+        System.out.println(hand.getName() + " Pairs: " + hand.getPairs());
     }
+
+//    public void giveCard(){
+//        // Give matching cards to opposing player
+//
+//    }
 
     private void displayTable(){
         System.out.println(table.getPlayer().getName() + ": " + table.getPlayer());
@@ -117,14 +107,20 @@ public class Game {
         if(table.getPlayer().isEmpty() || table.getOpponent().isEmpty()){
             return true;
         }
-        else if(table.getDeck().isEmpty()){
+
+        if(table.getDeck().isEmpty()){
             return true;
         }
 
         return false;
     }
 
-    public void didWin(){
-
+    public void endGameResults(){
+        if(table.getPlayer().getPairs() > table.getOpponent().getPairs()){
+            System.out.println("Player wins! Pairs: " + table.getPlayer().getPairs());
+        }
+        else if(table.getOpponent().getPairs() > table.getOpponent().getPairs()){
+            System.out.println("Opponent wins! Pairs: " + table.getOpponent().getPairs());
+        }
     }
 }

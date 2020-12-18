@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Hand {
     private List<Card> cards = new ArrayList<>();
-    private int score;
+    private int pairs = 0;
     private Player player;
     //private boolean isEmpty = false;
     private int cardCount;
@@ -48,15 +48,21 @@ public class Hand {
     }
 
     public Card getCard(int index){
-        // Get the matching card value from the player's hand.
-        //
         return cards.get(index);
     }
 
-    public boolean isPair() {
-        if (cards.size() > 2) return false;
-        return true;
-    }
+//    public boolean isPair() {
+//        // Detect if cards are a pair
+//        for(int i = 0; i < cards.size()-1; i++){
+//            for(int j = i + 1; j < cards.size(); j++){
+//                if(cards.get(i).getValue() == cards.get(j).getValue()){
+//                    return true;
+//                }
+//            }
+//        }
+//
+//        return false;
+//    }
 
 //    public void removePair(int value){
 //        cards.removeIf(card -> card.getValue() == value);
@@ -79,6 +85,18 @@ public class Hand {
         for (var card : cards){
             System.out.println(card.toString() + " ");
         }
+    }
+
+    public int getPairs(){
+        for(int i = 0; i < cards.size()-1; i++){
+            for(int j = i + 1; j < cards.size(); j++){
+                if(cards.get(i).getValue() == cards.get(j).getValue()){
+                    pairs++;
+                }
+            }
+        }
+
+        return pairs;
     }
 
 //    @Override

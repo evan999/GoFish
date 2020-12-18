@@ -8,7 +8,7 @@ import java.util.List;
 public class Player {
     private String name;
     private List<Card> cards = new ArrayList<Card>();
-    private int pairs;
+    // private int pairs;
     static Console console = new Console();
 
 
@@ -44,7 +44,7 @@ public class Player {
 //
 //    }
 
-    public int getPairs(){
-        return pairs;
-    }
+//    public int getPairs(){
+//        return pairs;
+//    }
 }
