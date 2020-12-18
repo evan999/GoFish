@@ -22,8 +22,8 @@ public class Game {
 //        Card card = new Card(2, "SPADES");
 //        table.getPlayer().addCard(card);
 
-//        System.out.println("Player 2: ");
-//        table.getOpponent().displayHand();
+        System.out.println("Player 2: ");
+        table.getOpponent().displayHand();
         int ask = console.requestInt("What card do you want to ask for? ");
         fish(ask);
 //        table.getPlayer().removeCard(ask);
@@ -44,14 +44,14 @@ public class Game {
         // Player draws a card
         boolean found = false;
         // System.out.println(table.getPlayer().getCount());
-        for (int index = 0; index < table.getPlayer().getCount(); index++){
-            if(table.getPlayer().getCardValue(index) == value) {
+        for (int index = 0; index < table.getOpponent().getCount(); index++){
+            if(table.getOpponent().getCardValue(index) == value) {
                 found = true;
                 // System.out.println(index);
                 // table.getPlayer().removeCard(index);
                 // Card matchingCard = table.getPlayer().removeCard(index);
 //              table.getOpponent().addCard(matchingCard);
-                table.getOpponent().addCard(table.getPlayer().removeCard(index));
+                table.getPlayer().addCard(table.getOpponent().removeCard(index));
 //              cards.add(matchingCard);
             }
         }
@@ -66,45 +66,17 @@ public class Game {
         }
     }
 
-//    private boolean playerTurn(Hand player){
-//        displayHand(player);
-//        return
-//    }
-//
-//    private boolean opponentTurn(Hand opponent){
-//        displayHand(opponent);
-//
-//    }
-
-//    public void getPairs(){
-//        // Hashmap of cards in player hand
-//        // Detect if there's 2 of a value in hand.
-//        // Take the key and remove it from hand
-//        // Add 1 to pairs attribute
-//        HashMap<Integer, Integer> cardsInHand = new HashMap<>();
-//
-//        // cardsInHand.put(table.getPlayer().getCardValue, 1);
-//
-//
-//    }
-
     private void displayHand(Hand hand) {
         System.out.println(hand);
         System.out.println(hand.getName() + " Pairs: " + hand.getPairs());
     }
-
-//    public void giveCard(){
-//        // Give matching cards to opposing player
-//
-//    }
 
     private void displayTable(){
         System.out.println(table.getPlayer().getName() + ": " + table.getPlayer());
     }
 
     public boolean gameOver(){
-        // Game ending conditions
-        // If player hand or opponent hand is empty, game ends
+
         if(table.getPlayer().isEmpty() || table.getOpponent().isEmpty()){
             return true;
         }
