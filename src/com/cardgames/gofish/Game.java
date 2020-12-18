@@ -49,7 +49,7 @@ public class Game {
                 found = true;
                 // System.out.println(index);
                 table.getPlayer().removeCard(index);
-                Card matchingCard = table.getPlayer().removeCard(index);
+                // Card matchingCard = table.getPlayer().removeCard(index);
 //              table.getOpponent().addCard(matchingCard);
 //              cards.add(matchingCard);
             }
