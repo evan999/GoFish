@@ -11,6 +11,8 @@ public class Game {
     private final static int cardsToDeal = 7;
     private List<Card> cards = new ArrayList<Card>();
     private Console console = new Console();
+    Hand playerHand = table.getPlayer();
+    Hand opponentHand = table.getOpponent();
 
     public void play(){
         table.getDeck().shuffle();
@@ -59,17 +61,18 @@ public class Game {
 
         if(!found){
             System.out.println("Go Fish!");
+            // table.getPlayer().addCard(table.getDeck().draw());
         }
     }
 
-    public void getBooks(){
+    public void getPairs(){
         // Hashmap of cards in player hand
         // Detect if there's 4 of a value in hand.
         // Take the key and remove it from hand
         // Add 1 to books attribute
         HashMap<Integer, Integer> cardsInHand = new HashMap<>();
 
-        
+
     }
 
 //    public void requestCard(){
@@ -106,5 +109,22 @@ public class Game {
 
     private void displayTable(){
         System.out.println(table.getPlayer().getName() + ": " + table.getPlayer());
+    }
+
+    public boolean gameOver(){
+        // Game ending conditions
+        // If player hand or opponent hand is empty, game ends
+        if(table.getPlayer().isEmpty() || table.getOpponent().isEmpty()){
+            return true;
+        }
+        else if(table.getDeck().isEmpty()){
+            return true;
+        }
+
+        return false;
+    }
+
+    public void didWin(){
+
     }
 }

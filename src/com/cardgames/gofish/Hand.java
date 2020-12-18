@@ -68,7 +68,7 @@ public class Hand {
 ////        }
 //    }
 
-    private boolean isEmpty(){
+    public boolean isEmpty(){
         if(cards.size() == 0){
             return true;
         }
