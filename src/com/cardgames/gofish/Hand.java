@@ -92,6 +92,8 @@ public class Hand {
             for(int j = i + 1; j < cards.size(); j++){
                 if(cards.get(i).getValue() == cards.get(j).getValue()){
                     pairs++;
+                    cards.remove(cards.get(i).getValue());
+                    cards.remove(cards.get(j).getValue());
                 }
             }
         }
