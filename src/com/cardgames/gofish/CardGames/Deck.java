@@ -9,7 +9,7 @@ import java.util.List;
 public class Deck {
 
     private List<Card> cards;
-    private final static String[] SUITS = {"DIAMONDS", "HEARTS", "CLUBS", "SPADES"};
+    private final static String[] SUITS = {"♦", "♥", "♣", "♠"};
     private final static int[] VALUES = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15};
     private boolean isEmpty = false;
 

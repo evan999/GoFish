@@ -3,9 +3,7 @@ package com.cardgames.gofish;
 import com.cardgames.gofish.CardGames.Card;
 import com.cardgames.gofish.Player;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Hand {
     private List<Card> cards = new ArrayList<>();
@@ -76,25 +74,35 @@ public class Hand {
 
     public boolean isEmpty(){
         if(cards.size() == 0){
+            System.out.println("Hand is empty");
             return true;
         }
+        System.out.println("Hand is NOT empty");
         return false;
     }
 
     public void displayHand(){
         for (var card : cards){
-            System.out.println(card.toString() + " ");
+            System.out.print(card.toString() + " ");
         }
     }
 
     public int findPairs(){
-        for(int i = 0; i < cards.size()-1; i++){
-            for(int j = i + 1; j < cards.size(); j++){
-                if(cards.get(i).getValue() == cards.get(j).getValue()){
-                    pairs++;
-                    cards.remove(cards.get(i).getValue());
-                    cards.remove(cards.get(j).getValue());
-                }
+        HashMap<Integer, Integer> cardsInHand = new HashMap<>();
+
+        for (var card : cards){
+            if(cardsInHand.containsKey(card.getValue())){
+                cardsInHand.put(card.getValue(), cardsInHand.get(card.getValue()) + 1);
+            }
+            else{
+                cardsInHand.put(card.getValue(), 1);
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> entry : cardsInHand.entrySet()) {
+            if(entry.getValue() >= 2){
+                System.out.println(entry.getKey());
+                pairs++;
             }
         }
 
