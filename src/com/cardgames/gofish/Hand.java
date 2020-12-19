@@ -73,12 +73,7 @@ public class Hand {
 //    }
 
     public boolean isEmpty(){
-        if(cards.size() == 0){
-            System.out.println("Hand is empty");
-            return true;
-        }
-        System.out.println("Hand is NOT empty");
-        return false;
+        return cards.size() == 0;
     }
 
     public void displayHand(){
@@ -101,8 +96,10 @@ public class Hand {
 
         for (Map.Entry<Integer, Integer> entry : cardsInHand.entrySet()) {
             if(entry.getValue() >= 2){
-                System.out.println(entry.getKey());
-                pairs++;
+//                System.out.println(entry.getKey());
+                pairs += entry.getValue() / 2;
+//                cards.remove(cards.getCard());
+                System.out.println("\nPairs: " + pairs);
             }
         }
 

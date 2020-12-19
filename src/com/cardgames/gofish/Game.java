@@ -23,15 +23,15 @@ public class Game {
             while(playerTurn){
                 System.out.println("\nPlayer 1: ");
                 table.getPlayer().displayHand();
-                System.out.println("\nPlayer 2: ");
-                table.getOpponent().displayHand();
-                System.out.print("\nPlayer 1, ");
+//                System.out.println("\nPlayer 2: ");
+//                table.getOpponent().displayHand();
+                System.out.print("\nPlayer 1- ");
                 int ask = console.requestInt("What card do you want to ask for?: (2-13 or 15) ");
-                System.out.println("\nPlayer 2: ");
-                table.getOpponent().displayHand();
+//                System.out.println("\nPlayer 2: ");
+//                table.getOpponent().displayHand();
                 fish(ask);
-                System.out.println("\nPlayer 1: ");
-                table.getPlayer().displayHand();
+//                System.out.println("\nPlayer 1: ");
+//                table.getPlayer().displayHand();
 
                 if(gameOver()){
                     break;
@@ -41,11 +41,11 @@ public class Game {
             while(!playerTurn){
                 System.out.println("\nPlayer 2: ");
                 table.getOpponent().displayHand();
-                System.out.print("\nPlayer 2, ");
+                System.out.print("\nPlayer 2- ");
                 int ask = console.requestInt("What card do you want to ask for? (2-13 or 15) ");
                 fish(ask);
-                System.out.println("\nPlayer 2: ");
-                table.getOpponent().displayHand();
+//                System.out.println("\nPlayer 2: ");
+//                table.getOpponent().displayHand();
 
                 if(gameOver()){
                     break;
@@ -73,10 +73,9 @@ public class Game {
                 if(table.getOpponent().getCardValue(index) == value) {
                     found = true;
                     table.getPlayer().addCard(table.getOpponent().removeCard(index));
+                    index--;
                 }
             }
-
-//            table.getPlayer().findPairs();
         }
         else{
             for (int index = 0; index < table.getPlayer().getCount(); index++){
@@ -86,21 +85,30 @@ public class Game {
                     index--;
                 }
             }
-//            table.getOpponent().findPairs();
         }
 
         if(!found && playerTurn){
-            System.out.println(playerTurn);
-            System.out.println("Go Fish!");
+            System.out.println("\nGo Fish!");
+//            table.getPlayer().findPairs();
             playerTurn = false;
-            table.getPlayer().addCard(table.getDeck().draw());
+            if(!table.getDeck().isEmpty()){
+                table.getPlayer().addCard(table.getDeck().draw());
+            }
+            table.getPlayer().findPairs();
+//            table.getPlayer().addCard(table.getDeck().draw());
         }
         else if (!found && !playerTurn) {
-            System.out.println(playerTurn);
-            System.out.println("Go Fish!");
+            System.out.println("\nGo Fish!");
+
             playerTurn = true;
-            table.getOpponent().addCard(table.getDeck().draw());
+            if(!table.getDeck().isEmpty()){
+                table.getOpponent().addCard(table.getDeck().draw());
+            }
+            table.getOpponent().findPairs();
+
         }
+
+
     }
 
     private void displayHand(Hand hand) {
@@ -113,18 +121,13 @@ public class Game {
     }
 
     public boolean gameOver(){
-
-        if(table.getPlayer().isEmpty() || table.getOpponent().isEmpty()){
-            return true;
-        }
-//        if(table.getDeck().isEmpty()){
-//            return true;
-//        }
-
-        return false;
+        return table.getPlayer().isEmpty() || table.getOpponent().isEmpty();
     }
 
     public void endGameResults(){
+        System.out.println("\nPlayer 1 Pairs: " + table.getPlayer().getPairs());
+        System.out.println("\nPlayer 2 Pairs: " + table.getOpponent().getPairs());
+
         if(table.getPlayer().getPairs() > table.getOpponent().getPairs()){
             System.out.println("Player 1 wins! Pairs: " + table.getPlayer().getPairs());
         }
