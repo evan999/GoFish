@@ -23,15 +23,15 @@ public class Game {
             while(playerTurn){
                 System.out.println("\nPlayer 1: ");
                 table.getPlayer().displayHand();
-//                System.out.println("\nPlayer 2: ");
-//                table.getOpponent().displayHand();
+                System.out.println("\nPlayer 2: ");
+                table.getOpponent().displayHand();
                 System.out.print("\nPlayer 1- ");
                 int ask = console.requestInt("What card do you want to ask for?: (2-13 or 15) ");
-//                System.out.println("\nPlayer 2: ");
-//                table.getOpponent().displayHand();
+                System.out.println("\nPlayer 2: ");
+                table.getOpponent().displayHand();
                 fish(ask);
-//                System.out.println("\nPlayer 1: ");
-//                table.getPlayer().displayHand();
+                System.out.println("\nPlayer 1: ");
+                table.getPlayer().displayHand();
 
                 if(gameOver()){
                     break;
@@ -102,6 +102,7 @@ public class Game {
 
             playerTurn = true;
             if(!table.getDeck().isEmpty()){
+                System.out.println(table.getDeck().draw());
                 table.getOpponent().addCard(table.getDeck().draw());
             }
             table.getOpponent().findPairs();

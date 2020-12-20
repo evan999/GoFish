@@ -9,8 +9,7 @@ public class Hand {
     private List<Card> cards = new ArrayList<>();
     private int pairs = 0;
     private Player player;
-    //private boolean isEmpty = false;
-    private int cardCount;
+
 
     public Hand(Player player){
         this.player = player;
@@ -49,29 +48,6 @@ public class Hand {
         return cards.get(index);
     }
 
-//    public boolean isPair() {
-//        // Detect if cards are a pair
-//        for(int i = 0; i < cards.size()-1; i++){
-//            for(int j = i + 1; j < cards.size(); j++){
-//                if(cards.get(i).getValue() == cards.get(j).getValue()){
-//                    return true;
-//                }
-//            }
-//        }
-//
-//        return false;
-//    }
-
-//    public void removePair(int value){
-//        cards.removeIf(card -> card.getValue() == value);
-//
-////        for(var card : cards){
-////            if(card.getValue() == value){
-////                cards.remove(card);
-////            }
-////        }
-//    }
-
     public boolean isEmpty(){
         return cards.size() == 0;
     }
@@ -83,6 +59,8 @@ public class Hand {
     }
 
     public int findPairs(){
+//        int occurrences = Collections.frequency(cards, 4);
+//        System.out.println(occurrences);
         HashMap<Integer, Integer> cardsInHand = new HashMap<>();
 
         for (var card : cards){
@@ -98,12 +76,24 @@ public class Hand {
             if(entry.getValue() >= 2){
 //                System.out.println(entry.getKey());
                 pairs += entry.getValue() / 2;
+                removePairs(entry.getKey());
+//                cardsInHand.remove(entry.getKey());
 //                cards.remove(cards.getCard());
                 System.out.println("\nPairs: " + pairs);
             }
         }
 
         return pairs;
+    }
+
+    public void removePairs(int value){
+        for(int card = 0; card < cards.size(); card++){
+            if(cards.get(card).getValue() == value){
+                System.out.println("Remove card from pair: " + cards.get(card).getValue());
+                removeCard(card);
+                card--;
+            }
+        }
     }
 
     public int getPairs(){
