@@ -59,8 +59,6 @@ public class Hand {
     }
 
     public int findPairs(){
-//        int occurrences = Collections.frequency(cards, 4);
-//        System.out.println(occurrences);
         HashMap<Integer, Integer> cardsInHand = new HashMap<>();
 
         for (var card : cards){
@@ -76,7 +74,7 @@ public class Hand {
             if(entry.getValue() >= 2){
 //                System.out.println(entry.getKey());
                 pairs += entry.getValue() / 2;
-                removePairs(entry.getKey());
+                this.removePairs(entry.getKey());
 //                cardsInHand.remove(entry.getKey());
 //                cards.remove(cards.getCard());
                 System.out.println("\nPairs: " + pairs);
@@ -90,7 +88,7 @@ public class Hand {
         for(int card = 0; card < cards.size(); card++){
             if(cards.get(card).getValue() == value){
                 System.out.println("Remove card from pair: " + cards.get(card).getValue());
-                removeCard(card);
+                this.removeCard(card);
                 card--;
             }
         }

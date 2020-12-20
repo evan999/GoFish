@@ -1,13 +1,13 @@
 package com.cardgames.gofish;
 
-import com.cardgames.gofish.CardGames.Deck;
+import com.cardgames.gofish.CardGames.Standard;
 
 public class Table {
     private final Hand player = new Hand(new Player());
-    private final Deck deck = new Deck();
+    private final Standard deck = new Standard();
     private final Hand opponent = new Hand(new Player());
 
-    public Deck getDeck() {
+    public Standard getDeck() {
         return deck;
     }
 

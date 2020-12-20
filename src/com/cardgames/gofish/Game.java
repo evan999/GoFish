@@ -23,17 +23,18 @@ public class Game {
             while(playerTurn){
                 System.out.println("\nPlayer 1: ");
                 table.getPlayer().displayHand();
-                System.out.println("\nPlayer 2: ");
-                table.getOpponent().displayHand();
+//                System.out.println("\nPlayer 2: ");
+//                table.getOpponent().displayHand();
                 System.out.print("\nPlayer 1- ");
                 int ask = console.requestInt("What card do you want to ask for?: (2-13 or 15) ");
-                System.out.println("\nPlayer 2: ");
-                table.getOpponent().displayHand();
+//                System.out.println("\nPlayer 2: ");
+//                table.getOpponent().displayHand();
                 fish(ask);
-                System.out.println("\nPlayer 1: ");
-                table.getPlayer().displayHand();
+//                System.out.println("\nPlayer 1: ");
+//                table.getPlayer().displayHand();
 
                 if(gameOver()){
+                    table.getPlayer().findPairs();
                     break;
                 }
             }
@@ -48,6 +49,7 @@ public class Game {
 //                table.getOpponent().displayHand();
 
                 if(gameOver()){
+                    table.getOpponent().findPairs();
                     break;
                 }
             }
@@ -92,7 +94,9 @@ public class Game {
 //            table.getPlayer().findPairs();
             playerTurn = false;
             if(!table.getDeck().isEmpty()){
-                table.getPlayer().addCard(table.getDeck().draw());
+                Card drawn = table.getDeck().draw();
+                System.out.println("Card drawn: " + drawn);
+                table.getPlayer().addCard(drawn);
             }
             table.getPlayer().findPairs();
 //            table.getPlayer().addCard(table.getDeck().draw());
@@ -102,8 +106,10 @@ public class Game {
 
             playerTurn = true;
             if(!table.getDeck().isEmpty()){
-                System.out.println(table.getDeck().draw());
-                table.getOpponent().addCard(table.getDeck().draw());
+                //System.out.println(table.getDeck().draw());
+                Card drawn = table.getDeck().draw();
+                System.out.println("Card drawn: " + drawn);
+                table.getOpponent().addCard(drawn);
             }
             table.getOpponent().findPairs();
 
@@ -132,8 +138,8 @@ public class Game {
         if(table.getPlayer().getPairs() > table.getOpponent().getPairs()){
             System.out.println("Player 1 wins! Pairs: " + table.getPlayer().getPairs());
         }
-        else if(table.getOpponent().getPairs() > table.getOpponent().getPairs()){
-            System.out.println("Player 2 wins! Pairs: " + table.getOpponent().getPairs());
+        else if(table.getOpponent().getPairs() > table.getPlayer().getPairs()){
+            System.out.println("\nPlayer 2 wins! Pairs: " + table.getOpponent().getPairs());
         }
         else{
             System.out.println("Draw!");

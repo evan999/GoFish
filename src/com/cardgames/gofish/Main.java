@@ -1,7 +1,5 @@
 package com.cardgames.gofish;
 
-import com.cardgames.gofish.CardGames.Deck;
-
 public class Main {
 
     public static void main(String[] args) {
