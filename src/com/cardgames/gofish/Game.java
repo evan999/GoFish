@@ -2,17 +2,11 @@ package com.cardgames.gofish;
 
 import com.cardgames.gofish.CardGames.Card;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class Game {
     Table table = new Table();
     private final static int cardsToDeal = 7;
-    // private List<Card> cards = new ArrayList<Card>();
     private final Console console = new Console();
     private boolean playerTurn = true;
-    //private boolean goFish = false;
 //    Hand playerHand = table.getPlayer();
 //    Hand opponentHand = table.getOpponent();
 
@@ -118,14 +112,14 @@ public class Game {
 
     }
 
-    private void displayHand(Hand hand) {
-        System.out.println(hand);
-        System.out.println(hand.getName() + " Pairs: " + hand.findPairs());
-    }
+//    private void displayHand(Hand hand) {
+//        System.out.println(hand);
+//        System.out.println(hand.getName() + " Pairs: " + hand.findPairs());
+//    }
 
-    private void displayTable(){
-        System.out.println(table.getPlayer().getName() + ": " + table.getPlayer());
-    }
+//    private void displayTable(){
+//        System.out.println(table.getPlayer().getName() + ": " + table.getPlayer());
+//    }
 
     public boolean gameOver(){
         return table.getPlayer().isEmpty() || table.getOpponent().isEmpty();
