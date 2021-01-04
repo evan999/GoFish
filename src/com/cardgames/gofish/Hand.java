@@ -75,8 +75,6 @@ public class Hand {
 //                System.out.println(entry.getKey());
                 pairs += entry.getValue() / 2;
                 this.removePairs(entry.getKey());
-//                cardsInHand.remove(entry.getKey());
-//                cards.remove(cards.getCard());
                 System.out.println("\nPairs: " + pairs);
             }
         }
@@ -97,15 +95,4 @@ public class Hand {
     public int getPairs(){
         return pairs;
     }
-
-//    @Override
-//    public String toString(){
-//        String output = "";
-//        for(var card : cards){
-//            output += card
-//        }
-//    }
-
-
-
 }

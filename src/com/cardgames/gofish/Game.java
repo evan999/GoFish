@@ -17,21 +17,17 @@ public class Game {
             while(playerTurn){
                 System.out.println("\nPlayer 1: ");
                 table.getPlayer().displayHand();
-//                System.out.println("\nPlayer 2: ");
-//                table.getOpponent().displayHand();
                 System.out.print("\nPlayer 1- ");
                 int ask = console.requestInt("What card do you want to ask for?: (2-13 or 15) ");
-//                System.out.println("\nPlayer 2: ");
-//                table.getOpponent().displayHand();
                 fish(ask);
-//                System.out.println("\nPlayer 1: ");
-//                table.getPlayer().displayHand();
 
                 if(gameOver()){
                     table.getPlayer().findPairs();
                     break;
                 }
             }
+
+            switchTurn();
 
             while(!playerTurn){
                 System.out.println("\nPlayer 2: ");
@@ -48,6 +44,8 @@ public class Game {
                 }
             }
 
+            switchTurn();
+
         } while(!gameOver());
 
         endGameResults();
@@ -57,6 +55,12 @@ public class Game {
         for(int card  = 0; card < cardsToDeal; card++) {
             table.getPlayer().addCard(table.getDeck().draw());
             table.getOpponent().addCard(table.getDeck().draw());
+        }
+    }
+
+    public void switchTurn(){
+        for(int count = 0; count < 5; count++){
+            System.out.println();
         }
     }
 
@@ -93,7 +97,6 @@ public class Game {
                 table.getPlayer().addCard(drawn);
             }
             table.getPlayer().findPairs();
-//            table.getPlayer().addCard(table.getDeck().draw());
         }
         else if (!found && !playerTurn) {
             System.out.println("\nGo Fish!");
@@ -111,15 +114,6 @@ public class Game {
 
 
     }
-
-//    private void displayHand(Hand hand) {
-//        System.out.println(hand);
-//        System.out.println(hand.getName() + " Pairs: " + hand.findPairs());
-//    }
-
-//    private void displayTable(){
-//        System.out.println(table.getPlayer().getName() + ": " + table.getPlayer());
-//    }
 
     public boolean gameOver(){
         return table.getPlayer().isEmpty() || table.getOpponent().isEmpty();
