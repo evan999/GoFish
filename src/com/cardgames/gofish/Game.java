@@ -1,28 +1,30 @@
 package com.cardgames.gofish;
 
 import com.cardgames.gofish.CardGames.Card;
+import com.cardgames.gofish.CardGames.Deck;
 
 public class Game {
     Table table = new Table();
     private final static int cardsToDeal = 7;
     private final Console console = new Console();
     private boolean playerTurn = true;
-//    Hand playerHand = table.getPlayer();
-//    Hand opponentHand = table.getOpponent();
+    Hand playerHand = table.getPlayer();
+    Hand opponentHand = table.getOpponent();
+    Deck tableDeck = table.getDeck();
 
     public void play(){
-        table.getDeck().shuffle();
+        tableDeck.shuffle();
         deal();
         do{
             while(playerTurn){
                 System.out.println("\nPlayer 1: ");
-                table.getPlayer().displayHand();
+                playerHand.displayHand();
                 System.out.print("\nPlayer 1- ");
                 int ask = console.requestInt("What card do you want to ask for?: (2-13 or 15) ");
                 fish(ask);
 
                 if(gameOver()){
-                    table.getPlayer().findPairs();
+                    playerHand.findPairs();
                     break;
                 }
             }
@@ -31,7 +33,7 @@ public class Game {
 
             while(!playerTurn){
                 System.out.println("\nPlayer 2: ");
-                table.getOpponent().displayHand();
+                opponentHand.displayHand();
                 System.out.print("\nPlayer 2- ");
                 int ask = console.requestInt("What card do you want to ask for? (2-13 or 15) ");
                 fish(ask);
@@ -39,7 +41,7 @@ public class Game {
 //                table.getOpponent().displayHand();
 
                 if(gameOver()){
-                    table.getOpponent().findPairs();
+                    opponentHand.findPairs();
                     break;
                 }
             }
@@ -53,13 +55,13 @@ public class Game {
 
     private void deal(){
         for(int card  = 0; card < cardsToDeal; card++) {
-            table.getPlayer().addCard(table.getDeck().draw());
-            table.getOpponent().addCard(table.getDeck().draw());
+            playerHand.addCard(tableDeck.draw());
+            opponentHand.addCard(tableDeck.draw());
         }
     }
 
     public void switchTurn(){
-        for(int count = 0; count < 5; count++){
+        for(int count = 0; count < 50; count++){
             System.out.println();
         }
     }
@@ -69,19 +71,19 @@ public class Game {
         boolean found = false;
 
         if(playerTurn){
-            for (int index = 0; index < table.getOpponent().getCount(); index++){
-                if(table.getOpponent().getCardValue(index) == value) {
+            for (int index = 0; index < opponentHand.getCount(); index++){
+                if(opponentHand.getCardValue(index) == value) {
                     found = true;
-                    table.getPlayer().addCard(table.getOpponent().removeCard(index));
+                    playerHand.addCard(opponentHand.removeCard(index));
                     index--;
                 }
             }
         }
         else{
-            for (int index = 0; index < table.getPlayer().getCount(); index++){
-                if(table.getPlayer().getCardValue(index) == value) {
+            for (int index = 0; index < playerHand.getCount(); index++){
+                if(playerHand.getCardValue(index) == value) {
                     found = true;
-                    table.getOpponent().addCard(table.getPlayer().removeCard(index));
+                    opponentHand.addCard(table.getPlayer().removeCard(index));
                     index--;
                 }
             }
@@ -91,24 +93,24 @@ public class Game {
             System.out.println("\nGo Fish!");
 //            table.getPlayer().findPairs();
             playerTurn = false;
-            if(!table.getDeck().isEmpty()){
-                Card drawn = table.getDeck().draw();
+            if(!tableDeck.isEmpty()){
+                Card drawn = tableDeck.draw();
                 System.out.println("Card drawn: " + drawn);
-                table.getPlayer().addCard(drawn);
+                playerHand.addCard(drawn);
             }
-            table.getPlayer().findPairs();
+            playerHand.findPairs();
         }
         else if (!found && !playerTurn) {
             System.out.println("\nGo Fish!");
 
             playerTurn = true;
-            if(!table.getDeck().isEmpty()){
+            if(!tableDeck.isEmpty()){
                 //System.out.println(table.getDeck().draw());
-                Card drawn = table.getDeck().draw();
+                Card drawn = tableDeck.draw();
                 System.out.println("Card drawn: " + drawn);
-                table.getOpponent().addCard(drawn);
+                opponentHand.addCard(drawn);
             }
-            table.getOpponent().findPairs();
+            opponentHand.findPairs();
 
         }
 
@@ -116,18 +118,18 @@ public class Game {
     }
 
     public boolean gameOver(){
-        return table.getPlayer().isEmpty() || table.getOpponent().isEmpty();
+        return playerHand.isEmpty() || opponentHand.isEmpty();
     }
 
     public void endGameResults(){
-        System.out.println("\nPlayer 1 Pairs: " + table.getPlayer().getPairs());
-        System.out.println("\nPlayer 2 Pairs: " + table.getOpponent().getPairs());
+        System.out.println("\nPlayer 1 Pairs: " + playerHand.getPairs());
+        System.out.println("\nPlayer 2 Pairs: " + opponentHand.getPairs());
 
-        if(table.getPlayer().getPairs() > table.getOpponent().getPairs()){
-            System.out.println("Player 1 wins! Pairs: " + table.getPlayer().getPairs());
+        if(playerHand.getPairs() > opponentHand.getPairs()){
+            System.out.println("Player 1 wins! Pairs: " + playerHand.getPairs());
         }
-        else if(table.getOpponent().getPairs() > table.getPlayer().getPairs()){
-            System.out.println("\nPlayer 2 wins! Pairs: " + table.getOpponent().getPairs());
+        else if(opponentHand.getPairs() > playerHand.getPairs()){
+            System.out.println("\nPlayer 2 wins! Pairs: " + opponentHand.getPairs());
         }
         else{
             System.out.println("Draw!");
