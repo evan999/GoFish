@@ -29,7 +29,7 @@ public class Game {
                 }
             }
 
-            switchTurn();
+//            switchTurn();
 
             while(!playerTurn){
                 System.out.println("\nPlayer 2: ");
@@ -46,7 +46,7 @@ public class Game {
                 }
             }
 
-            switchTurn();
+//            switchTurn();
 
         } while(!gameOver());
 
@@ -60,11 +60,11 @@ public class Game {
         }
     }
 
-    public void switchTurn(){
-        for(int count = 0; count < 50; count++){
-            System.out.println();
-        }
-    }
+//    public void switchTurn(){
+//        for(int count = 0; count < 50; count++){
+//            System.out.println();
+//        }
+//    }
 
     public void fish(int value){
         // Player draws a card

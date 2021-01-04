@@ -84,9 +84,11 @@ public class Hand {
 
     public void removePairs(int value){
         for(int card = 0; card < cards.size(); card++){
-            if(cards.get(card).getValue() == value){
+            int count = 0;
+            if(cards.get(card).getValue() == value && count <= 2){
                 System.out.println("Remove card from pair: " + cards.get(card).getValue());
                 this.removeCard(card);
+                count++;
                 card--;
             }
         }
