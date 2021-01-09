@@ -9,7 +9,7 @@ public class Table {
     private final Hand player = new Hand(new Player());
     private final Standard deck = new Standard();
     private final Hand opponent = new Hand(new Player());
-    private List<Player> players = new ArrayList<>();
+    //private List<Player> players = new ArrayList<>();
 
 
     public Standard getDeck() {

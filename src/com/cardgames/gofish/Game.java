@@ -29,24 +29,18 @@ public class Game {
                 }
             }
 
-//            switchTurn();
-
             while(!playerTurn){
                 System.out.println("\nPlayer 2: ");
                 opponentHand.displayHand();
                 System.out.print("\nPlayer 2- ");
                 int ask = console.requestInt("What card do you want to ask for? (2-13 or 15) ");
                 fish(ask);
-//                System.out.println("\nPlayer 2: ");
-//                table.getOpponent().displayHand();
 
                 if(gameOver()){
                     opponentHand.findPairs();
                     break;
                 }
             }
-
-//            switchTurn();
 
         } while(!gameOver());
 
@@ -60,11 +54,11 @@ public class Game {
         }
     }
 
-//    public void switchTurn(){
-//        for(int count = 0; count < 50; count++){
-//            System.out.println();
-//        }
-//    }
+    public void switchTurn(){
+        for(int count = 0; count < 50; count++){
+            System.out.println();
+        }
+    }
 
     public void fish(int value){
         // Player draws a card
@@ -105,16 +99,12 @@ public class Game {
 
             playerTurn = true;
             if(!tableDeck.isEmpty()){
-                //System.out.println(table.getDeck().draw());
                 Card drawn = tableDeck.draw();
                 System.out.println("Card drawn: " + drawn);
                 opponentHand.addCard(drawn);
             }
             opponentHand.findPairs();
-
         }
-
-
     }
 
     public boolean gameOver(){
