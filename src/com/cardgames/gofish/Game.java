@@ -11,6 +11,7 @@ public class Game {
     Hand playerHand = table.getPlayer();
     Hand opponentHand = table.getOpponent();
     Deck tableDeck = table.getDeck();
+    RandomSelector randomSelector = new RandomSelector();
 
     public void play(){
         tableDeck.shuffle();

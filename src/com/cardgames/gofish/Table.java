@@ -24,11 +24,8 @@ public class Table {
         return opponent;
     }
 
-    public Player addPlayer(){
-        return new Player();
-    }
-
-
-
+//    public Player addPlayer(){
+//        return new Player();
+//    }
 
 }
