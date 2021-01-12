@@ -22,7 +22,7 @@ public class Game {
                 playerHand.displayHand();
                 System.out.print("\nPlayer 1- ");
                 int ask = console.requestInt("What card do you want to ask for?: (2-13 or 15) ");
-                fish(ask);
+                request(ask);
 
                 if(gameOver()){
                     playerHand.findPairs();
@@ -35,7 +35,7 @@ public class Game {
                 opponentHand.displayHand();
                 System.out.print("\nPlayer 2- ");
                 int ask = console.requestInt("What card do you want to ask for? (2-13 or 15) ");
-                fish(ask);
+                request(ask);
 
                 if(gameOver()){
                     opponentHand.findPairs();
@@ -49,7 +49,7 @@ public class Game {
     }
 
     private void deal(){
-        for(int card  = 0; card < cardsToDeal; card++) {
+        for(int card = 0; card < cardsToDeal; card++) {
             playerHand.addCard(tableDeck.draw());
             opponentHand.addCard(tableDeck.draw());
         }
@@ -61,7 +61,7 @@ public class Game {
         }
     }
 
-    public void fish(int value){
+    public void request(int value){
         // Player draws a card
         boolean found = false;
 
