@@ -22,7 +22,14 @@ public class Game {
                 playerHand.displayHand();
                 System.out.print("\nPlayer 1- ");
                 int ask = console.requestInt("What card do you want to ask for?: (2-13 or 15) ");
-                request(ask);
+                boolean found = findMatch(ask);
+
+                if(!found){
+                    fish();
+                }
+                else{
+                    findMatch(ask);
+                }
 
                 if(gameOver()){
                     playerHand.findPairs();
@@ -34,8 +41,17 @@ public class Game {
                 System.out.println("\nPlayer 2: ");
                 opponentHand.displayHand();
                 System.out.print("\nPlayer 2- ");
-                int ask = console.requestInt("What card do you want to ask for? (2-13 or 15) ");
-                request(ask);
+//                int ask = console.requestInt("What card do you want to ask for? (2-13 or 15) ");
+                int ask = randomSelector.request();
+                System.out.println(ask);
+                boolean found = findMatch(ask);
+
+                if(!found){
+                    fish();
+                }
+                else{
+                    findMatch(ask);
+                }
 
                 if(gameOver()){
                     opponentHand.findPairs();
@@ -124,10 +140,10 @@ public class Game {
         }
     }
 
-    public void request(int value){
-        findMatch(value);
-
-    }
+//    public void request(int value){
+//        findMatch(value);
+//
+//    }
 
 //    public void request(int value){
 //        // Player draws a card

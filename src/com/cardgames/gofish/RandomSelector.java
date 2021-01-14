@@ -1,15 +1,26 @@
 package com.cardgames.gofish;
 
+import com.cardgames.gofish.CardGames.Card;
+
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RandomSelector implements AI {
 
-    Random randomCard = new Random();
+    SecureRandom randomCard = new SecureRandom();
 //    int[] cardValues = [1, 2, 3, 4, 5, 6,]
+//    List<Integer> memories = new ArrayList<>();
+    int[] VALUES = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15};
 
-    // Opponent player will use this interface
+    // Opponent player will use this interface for PvPAI game
 
-    public void requestRandomCard(int value){
-        
+    @Override
+    public int request(){
+        int rand = randomCard.nextInt(VALUES.length);
+        return VALUES[rand];
     }
+
+
 }
